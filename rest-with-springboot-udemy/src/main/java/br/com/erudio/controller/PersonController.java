@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.erudio.model.Person;
+import br.com.erudio.data.vo.PersonVO;
 import br.com.erudio.services.PersonService;
 
 @RestController
@@ -25,22 +25,22 @@ public class PersonController {
 	private PersonService services;
 	
 	@GetMapping(value="/{id}")
-	public Person findById(@PathVariable("id") Long id) {
+	public PersonVO findById(@PathVariable("id") Long id) {
 			return services.findById(id);
 	}
 	
 	@GetMapping
-	public List<Person> findAll() {
+	public List<PersonVO> findAll() {
 			return services.findAll();
 	}
 	
 	@PostMapping
-	public Person create(@RequestBody Person person) {
+	public PersonVO create(@RequestBody PersonVO person) {
 			return services.create(person);
 	}
 	
 	@PutMapping
-	public Person update(@RequestBody Person person) {
+	public PersonVO update(@RequestBody PersonVO person) {
 			return services.update(person);
 	}
 	
