@@ -49,7 +49,19 @@
 		    <groupId>com.github.dozermapper</groupId>
 		    <artifactId>dozer-core</artifactId>
 		    <version>6.4.1</version>
-		</dependency>  
+		</dependency>
+		
+		<!-- for xml support  -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		
+		<!-- for yaml support  -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>     
                
         <dependency>
           <groupId>junit</groupId>
