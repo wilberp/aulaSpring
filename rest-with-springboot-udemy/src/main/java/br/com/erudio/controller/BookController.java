@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.vo.v1.BookVO;
 import br.com.erudio.services.BookService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value = "Books Endpoints", description = "Descricao de Livros", tags = {"Livros Endpoints"})
 @RestController
 @RequestMapping("/api/book/v1")
 public class BookController {
@@ -26,6 +29,7 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
+	@ApiOperation(value = "Retorna Livro por Id")
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
 	public BookVO findById(@PathVariable("id") Long id) {
 		BookVO bookVO = bookService.findById(id);
@@ -34,6 +38,7 @@ public class BookController {
 
 	}
 
+	@ApiOperation(value = "Retorna todas os Livros")
 	@GetMapping(produces = { "application/json", "application/xml", "application/x-yaml" })
 	public List<BookVO> findAll() {
 		List<BookVO> books = bookService.findAll();
@@ -42,6 +47,7 @@ public class BookController {
 
 	}
 
+	@ApiOperation(value = "Grava cadastro de Livro")
 	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = {
 			"application/json", "application/xml", "application/x-yaml" })
 	public BookVO create(@RequestBody BookVO book) {
@@ -50,6 +56,7 @@ public class BookController {
 		return bookVO;
 	}
 
+	@ApiOperation(value = "Altera cadastro Livro")
 	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = {
 			"application/json", "application/xml", "application/x-yaml" })
 	public BookVO update(@RequestBody BookVO book) {
@@ -58,6 +65,7 @@ public class BookController {
 		return bookVO;
 	}
 
+	@ApiOperation(value = "Apaga Livro por Id")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		bookService.delete(id);

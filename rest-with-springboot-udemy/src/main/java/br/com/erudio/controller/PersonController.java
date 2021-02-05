@@ -19,7 +19,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.services.PersonService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="Person Ednpoints", description = "Descricao de Pessoas", tags = {"Pessoas Endpoints"})
 @RestController
 @RequestMapping("/api/person/v1")
 public class PersonController {
@@ -28,6 +31,7 @@ public class PersonController {
 	@Autowired
 	private PersonService services;
 	
+	@ApiOperation(value = "Retorna pessoa por Id")
 	@GetMapping(value="/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO findById(@PathVariable("id") Long id) {
 		PersonVO personVo = services.findById(id);
@@ -35,6 +39,7 @@ public class PersonController {
 		return personVo;
 	}
 	
+	@ApiOperation(value = "Retorna todas as pessoas")
 	@GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
 	public List<PersonVO> findAll() {
 		List<PersonVO> persons =  services.findAll();
@@ -45,6 +50,7 @@ public class PersonController {
 		return persons;
 	}
 	
+	@ApiOperation(value = "Grava cadastro de pessoa")
 	@PostMapping(produces = {"application/json", "application/xml", "application/x-yaml"}, 
 			     consumes = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO create(@RequestBody PersonVO person) {
@@ -59,6 +65,7 @@ public class PersonController {
 			
 	}
 	
+	@ApiOperation(value = "Altera cadastro pessoa")
 	@PutMapping(produces = {"application/json", "application/xml", "application/x-yaml"}, 
 			     consumes = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO update(@RequestBody PersonVO person) {
@@ -67,6 +74,7 @@ public class PersonController {
 			return personVo;
 	}
 	
+	@ApiOperation(value = "Apaga pessoa por Id")
  	@DeleteMapping(value="/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
  		services.delete(id);
